@@ -4,12 +4,18 @@ const swap = (arr, idx1, idx2) => {
 };
 
 function BubbleSort(arr) {
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] > arr[i + 1]) {
-      swap(arr, i, i + 1);
+  let no_swaps;
+  for (let i = arr.length; i > 0; i--) {
+    no_swaps = true;
+    for (let j = 0; j < i - 1; j++) {
+      if (arr[j] > arr[j + 1]) {
+        swap(arr, j, j + 1);
+        no_swaps = false;
+      }
     }
+    if (no_swaps) break;
   }
   return arr;
 }
 
-console.log(BubbleSort([5, 2, 3, 1, 4]));
+console.log(BubbleSort([37, 45, 29, 8, 12, 88, -3]));
