@@ -3,7 +3,6 @@ function merge(arr1, arr2) {
   let results = [];
   let i = 0;
   let j = 0;
-
   while (i < arr1.length && j < arr2.length) {
     if (arr2[j] > arr1[i]) {
       results.push(arr1[i]);
@@ -13,20 +12,29 @@ function merge(arr1, arr2) {
       j++;
     }
   }
-
-  // push any remaining elements onto end of results array
   while (i < arr1.length) {
     results.push(arr1[i]);
     i++;
   }
-
-  // push any remaining elements onto end of results array
-  while (j < arr1.length) {
+  while (j < arr2.length) {
     results.push(arr2[j]);
     j++;
   }
-
   return results;
 }
 
-console.log(merge([1, 10, 50], [2, 14, 99, 100]));
+function mergeSort(arr) {
+  if (arr.length <= 1) return arr;
+
+  // split array into two halves
+  let mid = Math.floor(arr.length / 2);
+
+  // recursively keep splitting until each side is an array of one item
+  let left = mergeSort(arr.slice(0, mid));
+  let right = mergeSort(arr.slice(mid));
+
+  // now recursively join back together using the merge function above
+  return merge(left, right);
+}
+
+console.log(mergeSort([10, 24, 76, 73, 72, 1, 9]));
