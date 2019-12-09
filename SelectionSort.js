@@ -13,9 +13,6 @@ function SelectionSort(arr) {
     }
     console.log(i, lowest);
     if (i !== lowest) {
-      // let temp = arr[i];
-      // arr[i] = arr[lowest];
-      // arr[lowest] = temp;
       [arr[i], arr[lowest]] = [arr[lowest], arr[i]];
     }
   }
