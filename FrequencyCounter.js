@@ -49,6 +49,7 @@ function same2(arr1, arr2) {
     if (!(key ** 2 in freqCntr2)) {
       return false;
     }
+    // check for frequency of keys appearing
     if (freqCntr2[key ** 2] !== freqCntr1[key]) {
       return false;
     }
@@ -56,4 +57,4 @@ function same2(arr1, arr2) {
   return true;
 }
 
-console.log(same2([1, 2, 3], [1, 4, 9]));
+console.log(same2([1, 2, 3, 1], [1, 4, 9, 1]));
