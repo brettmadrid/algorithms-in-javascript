@@ -5,23 +5,41 @@
   that sum to 0.  Return UNDEFINED otherwise.
 */
 
+// NAIVE approach O of n2
 function sumZero(arr) {
   if (arr.length < 2) return undefined;
 
   let i = 0;
   let j = 1;
-  let outArr = [];
 
   for (i; i < arr.length - 1; i++) {
     for (j; j < arr.length; j++) {
       if (arr[i] + arr[j] === 0) {
-        outArr.push(arr[i]);
-        outArr.push(arr[j]);
-        return outArr;
+        return [arr[i], arr[j]];
       }
     }
   }
   return undefined;
 }
 
-console.log(sumZero([1, -1, 2]));
+function sumZero2(arr) {
+  if (arr.length < 2) return undefined;
+
+  let leftPtr = 0;
+  let rightPtr = arr.length - 1;
+
+  while (leftPtr < rightPtr) {
+    let valSum = arr[leftPtr] + arr[rightPtr];
+    if (valSum === 0) {
+      return [arr[leftPtr], arr[rightPtr]];
+    }
+    if (valSum < 0) {
+      leftPtr++;
+    } else {
+      rightPtr--;
+    }
+  }
+  return undefined;
+}
+
+console.log(sumZero2([-1, 1, 3]));
