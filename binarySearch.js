@@ -4,8 +4,16 @@ function binarySearch(arr, val) {
   let mid = Math.floor((start + end) / 2);
   
   while (start <= end) {
+    // check if array position is equal to value
     if (arr[mid] === val) return mid;
+
+    // check if array position value is less than value
+    // if so, array position value is too low
+    // set start at one after current array position
     else if (arr[mid] < val) start = mid + 1;
+
+    // if array position value is too high
+    // reset end to 
     else end = mid - 1;
     mid = Math.floor((start + end) / 2);
   }
