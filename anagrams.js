@@ -11,29 +11,20 @@ function anagram(str1, str2) {
     return false;
   }
 
-  let Obj1 = {};
-  let Obj2 = {};
+  let strObj = {}
 
-  // create key,value pair of each letter and occurrence
-  for (let val of str1) {
-    Obj1[val] = (Obj1[val] || 0) + 1;
+  // sort key value pairs from string1 into strMap
+  for (const char of str1) {
+    strObj[char] ? strObj[char]++ : strObj[char] = 1;
+  }
+  console.log(strObj)
+  // Now find letters from str2 in strObj
+  for(const char of str2) {
+    if (!strObj[char]) return false;
+    strObj[char]--
   }
 
-  for (let val of str2) {
-    Obj2[val] = (Obj2[val] || 0) + 1;
-  }
-
-  for (let key in Obj1) {
-    // first compare if both objects have same keys
-    if (!(key in Obj2)) {
-      return false;
-    }
-    // now compare if the values of the keys are the same
-    if (Obj2[key] !== Obj1[key]) {
-      return false;
-    }
-  }
   return true;
 }
 
-console.log(anagram('qwerty', 'qeywrt'));
+console.log(anagram('resistance', 'ancestries'));
