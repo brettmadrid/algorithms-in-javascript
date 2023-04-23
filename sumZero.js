@@ -5,41 +5,23 @@
   that sum to 0.  Return UNDEFINED otherwise.
 */
 
-// NAIVE approach O of n2
-function sumZero(arr) {
-  if (arr.length < 2) return undefined;
-
-  let i = 0;
-  let j = 1;
-
-  for (i; i < arr.length - 1; i++) {
-    for (j; j < arr.length; j++) {
-      if (arr[i] + arr[j] === 0) {
-        return [arr[i], arr[j]];
-      }
-    }
-  }
-  return undefined;
-}
-
 function sumZero2(arr) {
   if (arr.length < 2) return undefined;
 
-  let leftPtr = 0;
-  let rightPtr = arr.length - 1;
+  let pointer1 = 0;
+  let pointer2 = arr.length - 1;
 
-  while (leftPtr < rightPtr) {
-    let valSum = arr[leftPtr] + arr[rightPtr];
-    if (valSum === 0) {
-      return [arr[leftPtr], arr[rightPtr]];
-    }
-    if (valSum < 0) {
-      leftPtr++;
+  while (pointer1 < pointer2) {
+    let pairCheck = arr[pointer1] + arr[pointer2]
+    
+    if (pairCheck === 0) return [arr[pointer1], arr[pointer2]];
+    if (pairCheck > 0) {
+      pointer2--;
     } else {
-      rightPtr--;
+      pointer1++
     }
   }
-  return undefined;
+  return undefined
 }
 
-console.log(sumZero2([-1, 1, 3]));
+console.log(sumZero2([-1,0,3,4,1,8,5]));
